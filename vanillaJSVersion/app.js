@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalAddButton = modal.querySelector("#js-modal-add");
   const modalCancelButton = modal.querySelector("#js-modal-cancel");
 
+  let selectedItems = new Set();
+
   // Toggle modal visibility
   const toggleModal = () => {
     modal.classList.toggle("modalBg--visible");
@@ -21,6 +23,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const listItem = document.createElement("li");
     listItem.classList.add("listItem");
     listItem.textContent = text;
+
+    // Toggle selection on click
+    listItem.addEventListener("click", () => {
+      if (listItem.classList.contains("listItem--selected")) {
+        listItem.classList.remove("listItem--selected");
+        selectedItems.delete(listItem);
+      } else {
+        listItem.classList.add("listItem--selected");
+        selectedItems.add(listItem);
+      }
+    });
 
     // Remove item on double click
     listItem.addEventListener("dblclick", () => {
