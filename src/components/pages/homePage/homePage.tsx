@@ -1,10 +1,10 @@
-import styles from "./homePage.module.scss";
+import CardLayout from "@templates/cardLayout/cardLayout";
 
 const HomePage = () => {
   return (
-    <div className={styles.title}>
+    <CardLayout>
       <h1>This is a technical proof</h1>
-    </div>
+    </CardLayout>
   );
 };
 
