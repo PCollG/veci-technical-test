@@ -2,20 +2,20 @@ import { renderHook, act } from "@testing-library/react";
 import { useListReducer } from "../hooks/useListReducer";
 
 describe("useListReducer", () => {
-  it("debe agregar un ítem correctamente", () => {
+  it("should add an item correctly", () => {
     const { result } = renderHook(() => useListReducer());
 
     act(() => {
-      result.current.addItem("Nuevo ítem");
+      result.current.addItem("New item");
     });
 
-    expect(result.current.state.items).toContain("Nuevo ítem");
+    expect(result.current.state.items).toContain("New item");
   });
 
-  it("debe eliminar un ítem correctamente", () => {
+  it("should delete an item correctly", () => {
     const { result } = renderHook(() =>
       useListReducer({
-        items: ["Ítem 1", "Ítem 2"],
+        items: ["Item 1", "Item 2"],
         selectedIndexes: [],
         undoStack: [],
       })
@@ -25,13 +25,13 @@ describe("useListReducer", () => {
       result.current.deleteItem([0]);
     });
 
-    expect(result.current.state.items).not.toContain("Ítem 1");
+    expect(result.current.state.items).not.toContain("Item 1");
   });
 
-  it("debe eliminar múltiples ítems correctamente", () => {
+  it("should delete multiple items correctly", () => {
     const { result } = renderHook(() =>
       useListReducer({
-        items: ["Ítem 1", "Ítem 2", "Ítem 3"],
+        items: ["Item 1", "Item 2", "Item 3"],
         selectedIndexes: [],
         undoStack: [],
       })
@@ -41,13 +41,13 @@ describe("useListReducer", () => {
       result.current.deleteItem([0, 2]);
     });
 
-    expect(result.current.state.items).toEqual(["Ítem 2"]);
+    expect(result.current.state.items).toEqual(["Item 2"]);
   });
 
-  it("debe seleccionar un ítem correctamente", () => {
+  it("should select an item correctly", () => {
     const { result } = renderHook(() =>
       useListReducer({
-        items: ["Ítem 1", "Ítem 2"],
+        items: ["Item 1", "Item 2"],
         selectedIndexes: [],
         undoStack: [],
       })
@@ -60,10 +60,10 @@ describe("useListReducer", () => {
     expect(result.current.state.selectedIndexes).toContain(1);
   });
 
-  it("debe deseleccionar un ítem correctamente", () => {
+  it("should deselect an item correctly", () => {
     const { result } = renderHook(() =>
       useListReducer({
-        items: ["Ítem 1", "Ítem 2"],
+        items: ["Item 1", "Item 2"],
         selectedIndexes: [0],
         undoStack: [],
       })
@@ -76,21 +76,21 @@ describe("useListReducer", () => {
     expect(result.current.state.selectedIndexes).not.toContain(0);
   });
 
-  it("debe deshacer una acción correctamente", () => {
+  it("should undo an action correctly", () => {
     const { result } = renderHook(() => useListReducer());
 
     act(() => {
-      result.current.addItem("Ítem 1");
+      result.current.addItem("Item 1");
     });
 
     act(() => {
       result.current.undo();
     });
 
-    expect(result.current.state.items).not.toContain("Ítem 1");
+    expect(result.current.state.items).not.toContain("Item 1");
   });
 
-  it("debe manejar deshacer sin pila de deshacer", () => {
+  it("should handle undo with an empty undo stack", () => {
     const { result } = renderHook(() => useListReducer());
 
     act(() => {
