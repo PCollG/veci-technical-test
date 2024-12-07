@@ -4,12 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const deleteButton = document.querySelector("#js-delete");
   const addButton = document.querySelector("#js-add");
+  const undoButton = document.querySelector("#js-undo");
 
   const modalInput = modal.querySelector("input");
   const modalAddButton = modal.querySelector("#js-modal-add");
   const modalCancelButton = modal.querySelector("#js-modal-cancel");
 
   let selectedItems = new Set();
+  const actionStack = [];
 
   // Toggle modal visibility
   const toggleModal = () => {
@@ -39,10 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Remove item on double click
     listItem.addEventListener("dblclick", () => {
+      actionStack.push({ type: "delete", items: [listItem] });
       listItem.remove();
+      selectedItems.delete(listItem);
     });
 
     listContainer.appendChild(listItem);
+    actionStack.push({ type: "add", items: [listItem] });
   };
 
   modalAddButton.addEventListener("click", () => {
@@ -63,9 +68,33 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    selectedItems.forEach((item) => item.remove());
+    const itemsToDelete = Array.from(selectedItems);
+    actionStack.push({ type: "delete", items: itemsToDelete });
+
+    itemsToDelete.forEach((item) => item.remove());
     selectedItems.clear();
   };
 
   deleteButton.addEventListener("click", deleteItems);
+
+  // Undo the last action
+  const undoLastAction = () => {
+    if (actionStack.length === 0) {
+      alert("No actions to undo.");
+      return;
+    }
+
+    const lastAction = actionStack.pop();
+
+    if (lastAction.type === "add") {
+      lastAction.items.forEach((item) => item.remove());
+    } else if (lastAction.type === "delete") {
+      lastAction.items.forEach((item) => {
+        listContainer.appendChild(item);
+        item.classList.remove("listItem--selected");
+      });
+    }
+  };
+
+  undoButton.addEventListener("click", undoLastAction);
 });
