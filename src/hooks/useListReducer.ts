@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 type ListAction =
   | { type: "ADD_ITEM"; payload: string }
@@ -97,7 +97,23 @@ export const useListReducer = (
   deselectItem: (index: number) => void;
   undo: () => void;
 } => {
-  const [state, dispatch] = useReducer(listReducer, initialState);
+  const loadInitialState = (): ListState => {
+    const savedState = localStorage.getItem("listState");
+    if (savedState) {
+      try {
+        return JSON.parse(savedState);
+      } catch {
+        console.error("Failed to parse saved state.");
+      }
+    }
+    return initialState;
+  };
+
+  const [state, dispatch] = useReducer(listReducer, loadInitialState());
+
+  useEffect(() => {
+    localStorage.setItem("listState", JSON.stringify(state));
+  }, [state]);
 
   const addItem = (item: string) =>
     dispatch({ type: actions.ADD_ITEM, payload: item });
