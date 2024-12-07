@@ -1,0 +1,19 @@
+.listItem {
+  padding: 9px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  user-select: none;
+
+  &.selected {
+    background-color: #324bff;
+    color: #fff;
+    &:hover {
+      background-color: #5569ff;
+      transition: background-color 0.3s;
+    }
+  }
+  &:hover {
+    background-color: #e7e7e7;
+    transition: background-color 0.3s;
+  }
+}

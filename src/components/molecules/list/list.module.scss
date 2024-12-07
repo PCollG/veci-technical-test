@@ -1,0 +1,31 @@
+.listContainer {
+  padding: 13px 11px;
+  border: 1px solid #cccccc;
+  background-color: #f7f7f7;
+  margin-bottom: 30px;
+  height: 230px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #cccccc;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #324bff;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: #293ed8;
+    }
+  }
+}
+
+.list {
+  list-style-type: none;
+}
