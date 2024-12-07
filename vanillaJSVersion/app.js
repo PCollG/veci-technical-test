@@ -22,6 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
     listItem.classList.add("listItem");
     listItem.textContent = text;
 
+    // Remove item on double click
+    listItem.addEventListener("dblclick", () => {
+      listItem.remove();
+    });
+
     listContainer.appendChild(listItem);
   };
 
