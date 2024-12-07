@@ -6,7 +6,7 @@ import styles from "./itemList.module.scss";
 import { useListReducer } from "@hooks/useListReducer";
 
 const ItemList = () => {
-  const { state, addItem } = useListReducer({
+  const { state, addItem, deleteItem } = useListReducer({
     items: ["item 1", "item 2", "item 3"],
   });
 
@@ -16,7 +16,7 @@ const ItemList = () => {
 
   return (
     <>
-      <List items={items} />
+      <List items={items} deleteItem={deleteItem} />
       <div className={styles.buttonsWrapper}>
         <Button>Undo</Button>
         <Button>Delete</Button>
