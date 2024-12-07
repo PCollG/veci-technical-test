@@ -3,9 +3,16 @@ import List from "@molecules/list/list";
 import Button from "@atoms/button/button";
 
 import styles from "./itemList.module.scss";
+import { useListReducer } from "@hooks/useListReducer";
 
 const ItemList = () => {
-  const items = ["item 1", "item 2", "item 3"];
+  const { state, addItem } = useListReducer({
+    items: ["item 1", "item 2", "item 3"],
+  });
+
+  const { items } = state;
+
+  const handleAddItem = (item: string) => addItem(item);
 
   return (
     <>
@@ -19,6 +26,7 @@ const ItemList = () => {
               Add
             </Button>
           }
+          handleAddItem={handleAddItem}
         />
       </div>
     </>
