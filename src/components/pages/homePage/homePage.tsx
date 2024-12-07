@@ -1,15 +1,11 @@
-import { useState } from "react";
-
 import CardLayout from "@templates/cardLayout/cardLayout";
+import ModalAddItem from "@organisms/modalAddItem/modalAddItem";
 import List from "@molecules/list/list";
-import Modal from "@molecules/modal/modal";
 import Button from "@atoms/button/button";
 
 import styles from "./homePage.module.scss";
 
 const HomePage = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <CardLayout>
       <h1 className={styles.title}>This is a technical proof</h1>
@@ -23,22 +19,14 @@ const HomePage = () => {
       <div className={styles.buttonsWrapper}>
         <Button>Undo</Button>
         <Button>Delete</Button>
-        <Button
-          variant="secondary"
-          style={{ marginLeft: "auto" }}
-          onClick={() => setIsOpen(true)}
-        >
-          Add
-        </Button>
+        <ModalAddItem
+          trigger={
+            <Button variant="secondary" style={{ marginLeft: "auto" }}>
+              Add
+            </Button>
+          }
+        />
       </div>
-      <Modal
-        isOpen={isOpen}
-        handleClose={() => setIsOpen(false)}
-        cardStyle={{ marginTop: "50px" }}
-      >
-        <h1>Modal</h1>
-        <p>Modal content</p>
-      </Modal>
     </CardLayout>
   );
 };
