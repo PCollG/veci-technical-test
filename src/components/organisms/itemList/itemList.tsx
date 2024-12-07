@@ -4,6 +4,8 @@ import Button from "@atoms/button/button";
 
 import { useListReducer } from "@hooks/useListReducer";
 
+import UndoIcon from "@assets/undo.svg?react";
+
 import styles from "./itemList.module.scss";
 
 const ItemList = () => {
@@ -28,7 +30,11 @@ const ItemList = () => {
         deleteItem={deleteItem}
       />
       <div className={styles.buttonsWrapper}>
-        {undoStack.length > 0 && <Button onClick={() => undo()}>Undo</Button>}
+        {undoStack.length > 0 && (
+          <Button onClick={() => undo()}>
+            <UndoIcon className={styles.icon} />
+          </Button>
+        )}
         {selectedIndexes.length !== 0 && (
           <Button onClick={() => deleteItem(selectedIndexes)}>DELETE</Button>
         )}
