@@ -3,10 +3,27 @@ import style from "./list.module.scss";
 
 type ListProps = {
   items: string[];
+  selectedIndexes?: number[];
   deleteItem?: (index: number[]) => void;
+  selectItem?: (index: number) => void;
+  deselectItem?: (index: number) => void;
 };
 
-const List = ({ items, deleteItem }: ListProps) => {
+const List = ({
+  items,
+  selectedIndexes,
+  deleteItem,
+  selectItem,
+  deselectItem,
+}: ListProps) => {
+  const handleClickItem = (index: number) => {
+    if (selectedIndexes?.includes(index)) {
+      deselectItem?.(index);
+    } else {
+      selectItem?.(index);
+    }
+  };
+
   return (
     <div className={style.listContainer}>
       <ul className={style.list}>
@@ -14,6 +31,8 @@ const List = ({ items, deleteItem }: ListProps) => {
           <ListItem
             key={index}
             item={item}
+            selected={selectedIndexes?.includes(index)}
+            onClick={() => handleClickItem(index)}
             onDoubleClick={() => deleteItem?.([index])}
           />
         ))}
