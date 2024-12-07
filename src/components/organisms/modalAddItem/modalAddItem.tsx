@@ -14,6 +14,7 @@ interface ModalAddItemProps {
 const ModalAddItem = ({ trigger, handleAddItem }: ModalAddItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
   const triggerWithAction = React.cloneElement(trigger, {
     onClick: () => setIsOpen((prev) => !prev),
@@ -21,9 +22,11 @@ const ModalAddItem = ({ trigger, handleAddItem }: ModalAddItemProps) => {
 
   const handleAddClick = () => {
     if (!inputValue.trim()) {
+      setError("Please enter a valid item.");
       return;
     }
 
+    setError(null);
     handleAddItem(inputValue);
     setIsOpen(false);
     setInputValue("");
@@ -31,8 +34,9 @@ const ModalAddItem = ({ trigger, handleAddItem }: ModalAddItemProps) => {
 
   const handleClose = () => {
     setIsOpen(false);
+    setInputValue("");
+    setError(null);
   };
-
   return (
     <>
       {triggerWithAction}
@@ -45,10 +49,14 @@ const ModalAddItem = ({ trigger, handleAddItem }: ModalAddItemProps) => {
         <div style={{ padding: "20px 0 25px" }}>
           <input
             type="text"
-            style={{ width: "100%" }}
+            style={Object.assign(
+              { width: "100%" },
+              error ? { border: "1px solid red" } : {}
+            )}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
+          {error && <p style={{ color: "red", padding: "10px 0" }}>{error}</p>}
         </div>
         <div className={style.modalBtnWrapper}>
           <Button variant="secondary" onClick={handleAddClick}>
