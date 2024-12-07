@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vanilla JS Technical proof | VECI</title>
+    <link rel="stylesheet" href="./main.css" />
+    <link rel="icon" type="image/ico" href="../public/favicon.ico" />
+  </head>
+  <body>
+    <div class="card">
+      <h1 class="title">This is a technical proof (JS Vanilla version)</h1>
+      <p class="description">
+        Lorem ipsum dolor sit amet consectetur adipiscing, elit mus primis nec
+        inceptos. Lacinia habitasse arcu molestie maecenas cursus quam nunc,
+        hendrerit posuere augue fames dictumst placerat porttitor, dis mi
+        pharetra vestibulum venenatis phasellus.
+      </p>
+      <div class="listContainer">
+        <ul class="list"></ul>
+      </div>
+      <div class="buttonsWrapper">
+        <button class="button primary" id="js-undo">UNDO</button>
+        <button class="button primary" id="js-delete">Delete</button>
+        <button class="button secondary buttonsWrapper--last" id="js-add">
+          Add
+        </button>
+      </div>
+    </div>
+    <!-- MODAL -->
+    <div class="modalBg" id="js-modal">
+      <div class="card">
+        <p class="modalDescription">Add item to list</p>
+        <input type="text" placeholder="Type the text here..." />
+        <div class="modalBtnWrapper">
+          <button class="button secondary" id="js-modal-add">Add</button>
+          <button class="button primary" id="js-modal-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
