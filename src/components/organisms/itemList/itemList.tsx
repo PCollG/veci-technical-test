@@ -11,7 +11,7 @@ import styles from "./itemList.module.scss";
 const ItemList = () => {
   const { state, addItem, deleteItem, selectItem, deselectItem, undo } =
     useListReducer({
-      items: ["item 1", "item 2", "item 3"],
+      items: [],
       selectedIndexes: [],
       undoStack: [],
     });

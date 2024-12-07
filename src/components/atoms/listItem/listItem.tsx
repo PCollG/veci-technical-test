@@ -7,7 +7,7 @@ interface ListItemProps extends React.HTMLAttributes<HTMLLIElement> {
 
 const ListItem: React.FC<ListItemProps> = ({ item, selected, ...props }) => (
   <li
-    className={`${styles.listItem} ${selected && styles.selected}`}
+    className={`${styles.listItem} ${selected ? styles.selected : ""}`}
     {...props}
   >
     {item}
