@@ -46,3 +46,9 @@
   background-color: #5569ff;
   transition: background-color 0.3s;
 }
+
+.icon svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+}
