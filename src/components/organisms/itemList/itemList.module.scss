@@ -1,0 +1,13 @@
+.buttonsWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.icon {
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+  fill: currentColor;
+}

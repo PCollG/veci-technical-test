@@ -1,7 +1,5 @@
 import CardLayout from "@templates/cardLayout/cardLayout";
-import ModalAddItem from "@organisms/modalAddItem/modalAddItem";
-import List from "@molecules/list/list";
-import Button from "@atoms/button/button";
+import ItemList from "@organisms/itemList/itemList";
 
 import styles from "./homePage.module.scss";
 
@@ -15,18 +13,7 @@ const HomePage = () => {
         hendrerit posuere augue fames dictumst placerat porttitor, dis mi
         pharetra vestibulum venenatis phasellus.
       </p>
-      <List items={["item 1", "item 2", "item 3"]} />
-      <div className={styles.buttonsWrapper}>
-        <Button>Undo</Button>
-        <Button>Delete</Button>
-        <ModalAddItem
-          trigger={
-            <Button variant="secondary" style={{ marginLeft: "auto" }}>
-              Add
-            </Button>
-          }
-        />
-      </div>
+      <ItemList />
     </CardLayout>
   );
 };

@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import Button from "@atoms/button/button";
 import style from "./modalAddItem.module.scss";
