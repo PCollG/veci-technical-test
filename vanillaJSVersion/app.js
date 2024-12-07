@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const listContainer = document.querySelector(".list");
   const modal = document.querySelector("#js-modal");
 
+  const deleteButton = document.querySelector("#js-delete");
   const addButton = document.querySelector("#js-add");
+
   const modalInput = modal.querySelector("input");
   const modalAddButton = modal.querySelector("#js-modal-add");
   const modalCancelButton = modal.querySelector("#js-modal-cancel");
@@ -53,4 +55,17 @@ document.addEventListener("DOMContentLoaded", () => {
     addItem(text);
     toggleModal();
   });
+
+  // Delete selected items
+  const deleteItems = () => {
+    if (selectedItems.size === 0) {
+      alert("Please select at least one item to delete.");
+      return;
+    }
+
+    selectedItems.forEach((item) => item.remove());
+    selectedItems.clear();
+  };
+
+  deleteButton.addEventListener("click", deleteItems);
 });
