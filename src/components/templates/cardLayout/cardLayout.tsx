@@ -1,7 +1,11 @@
 import { ReactNode } from "react";
 import Card from "@atoms/card/card";
 
-const CardLayout = ({ children }: { children: ReactNode }) => {
+type CardLayoutProps = {
+  children: ReactNode;
+};
+
+const CardLayout = ({ children }: CardLayoutProps) => {
   return <Card>{children}</Card>;
 };
 
